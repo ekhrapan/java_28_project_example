@@ -1,40 +1,37 @@
-package academy.belhard.reader;
+package academy.belhard.io.reader;
 
-import academy.belhard.entity.Student;
+import academy.belhard.entity.School;
 import academy.belhard.exception.EmptySourceFile;
-import academy.belhard.util.StudentUtil;
+import academy.belhard.util.SchoolUtil;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDataFileReader {
+public class SchoolDataFileReader {
     private String filepath;
 
-    public StudentDataFileReader(String filepath) {
+    public SchoolDataFileReader(String filepath) {
         this.filepath = filepath;
     }
 
-    public List<Student> read() {
-        List<Student> students = new ArrayList<>();
+    public List<School> read() {
+        List<School> schools = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
             checkFile();
 
             String line;
             while ((line = reader.readLine()) != null) {
-                Student student = StudentUtil.toObject(line);
-                students.add(student);
+                School school = SchoolUtil.toObject(line);
+                schools.add(school);
             }
 
         } catch (IOException | EmptySourceFile e) {
             e.printStackTrace();
         }
 
-        return students;
+        return schools;
     }
 
     private void checkFile() throws EmptySourceFile {

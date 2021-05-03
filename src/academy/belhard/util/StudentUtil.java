@@ -2,10 +2,12 @@ package academy.belhard.util;
 
 import academy.belhard.entity.Student;
 
+import static academy.belhard.io.IoConstants.DELIMITER;
+
 public class StudentUtil {
 
     public static Student toObject(String line) {
-        String[] schoolArr = line.split(";");
+        String[] schoolArr = line.split(DELIMITER);
 
         int id = Integer.parseInt(schoolArr[0]);
         String firstName = schoolArr[1];
